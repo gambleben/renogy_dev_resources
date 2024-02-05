@@ -1,0 +1,73 @@
+command 1
+30 03 14 02 00 08 e4 1d - address 30 (ascii 0) register 5122, 8 registers - serial number
+30 03 10 length 16 bytes
+52 42 54 31 30 30 4c 46 50 31 32 53 2d 47 31 00 RBT100LFP12S-G1
+91 e8 - crc
+command 2
+31 03 14 02 00 08 e5 cc - address 31 (ascii 1) register 5122, 8 registers - serial number
+no response
+command 3
+ff 03 00 00 00 01 91 d4 - address 255 read attempt
+30 83 02 91 3e - 83 = read error, 02 = PDU start address is not correct
+command 4
+30 03 13 88 00 11 05 49 - decimal 5000 17 registers - Cell count and voltages for all 16 potential cells
+response
+30 03 22 length 34 bytes
+00 04 - cell count
+00 20 - cell volts
+00 21
+00 21
+00 20
+00 00
+00 00
+00 00
+00 00
+00 00
+00 00
+00 00
+00 00
+00 00
+00 00
+00 00
+00 00
+15 0c - crc
+command 2
+30 03 13 99 00 05 55 43 - decimal 5017, 5 registers
+response 2
+30 03 0a length 10 bytes
+00 03 ?
+00 c8 cell temp
+00 be
+00 be
+00 be
+f2 b4 - crc
+command 3
+30 03 13 b2 00 06 65 4a - decimal 5042, 6 registers
+response 3
+30 03 0c length 12 bytes
+00 00 - amps
+00 84 - 13.2 volts
+00 00 f6 bf - 63167 ma remaining capacity
+00 01 86 a0 - 100000 ma total capacity
+03 f7 - crc
+command 4
+30 03 13 f0 00 04 44 9f - decimal 5104, 4 registers - this must be alarms and/or cell balance flags
+response 4
+30 03 08 length 8 bytes
+00 00 
+binary 00 - 15 0000000000000000
+00 00 
+binary 16 - 31 0000000000000000
+00 0e 
+binary 32 - 47 0000000000001110
+00 00
+binary 48 - 63 0000000000000000
+0f e8 - crc
+command 5
+30 03 14 0a 00 02 e5 d8 - decimal 5130 , 2 registers
+response 5
+30 03 04 length 4 bytes
+30 30 31 38 - ascii '0018' firmware version
+c1 bd - crc
+command 6
+31 03 13 88 00 11 04 98 - attempting to scan next address
